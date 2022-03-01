@@ -1,8 +1,19 @@
 import React from "react";
 import "./additionalInform.css";
 
-import { Form, Input, Row, Col, Typography, Select, Upload } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import {
+  Form,
+  Input,
+  Row,
+  Col,
+  Typography,
+  Select,
+  Upload,
+  Divider,
+  Button,
+  Space,
+} from "antd";
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -137,6 +148,147 @@ const AdditionalInform = () => {
             </Form.Item>
           </Col>
         </Row>
+        <Divider type="dashed" />
+        <Title level={5} className="intakeTitle">
+          Inakes
+        </Title>
+        <Form
+          name="dynamic_form_nest_item"
+          onFinish={onFinish}
+          autoComplete="off"
+        >
+          <Form.List name="users">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <Space
+                    key={key}
+                    style={{ display: "flex", marginBottom: 8 }}
+                    align="baseline"
+                  >
+                    <Row
+                      style={{ backgroundColor: "#f0f0f0", padding: "10px" }}
+                      gutter={[8, 8]}
+                    >
+                      <Col span={12} className="firstIntakeCol">
+                        <Form.Item
+                          {...restField}
+                          label="Intake"
+                          style={{ width: "545px" }}
+                          name={[name, "first"]}
+                        >
+                          <Input placeholder="Select Intake" />
+                        </Form.Item>
+                      </Col>
+                      <Col span={12}>
+                        <Row>
+                          <Form.Item
+                            {...restField}
+                            label="Duration"
+                            style={{ width: "545px" }}
+                            name={[name, "first"]}
+                          >
+                            <Input placeholder="Select Duration" />
+                          </Form.Item>
+                        </Row>
+                        <Row>
+                          <Form.Item
+                            {...restField}
+                            style={{ width: "545px" }}
+                            name={[name, "first"]}
+                          >
+                            <Input placeholder="Select Duration" />
+                          </Form.Item>
+                        </Row>
+                      </Col>
+                    </Row>
+                    <Button
+                      type="primary"
+                      icon={<DeleteOutlined />}
+                      onClick={() => remove(name)}
+                      danger
+                      size={"middle"}
+                    />
+                  </Space>
+                ))}
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    onClick={() => add()}
+                    icon={<PlusOutlined />}
+                  >
+                    Add field
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+        </Form>
+        <Divider type="dashed" />
+        <Title level={5} className="intakeTitle">
+          Cource Tag
+        </Title>
+        <Form
+          name="dynamic_form_nest_item"
+          onFinish={onFinish}
+          autoComplete="off"
+        >
+          <Form.List name="users">
+            {(fields, { add, remove }) => (
+              <>
+                <Button
+                  type="primary"
+                  icon={<PlusOutlined />}
+                  onClick={() => add()}
+                  style={{ float: "right" }}
+                >
+                  New Cource Tag
+                </Button>
+                {fields.map(({ key, name, ...restField }) => (
+                  <Space
+                    key={key}
+                    style={{ display: "flex", marginBottom: 8, marginTop: 8 }}
+                    align="baseline"
+                  >
+                    <Form.Item
+                      {...restField}
+                      label="Tag"
+                      style={{ width: "545px" }}
+                      name={[name, "first"]}
+                    >
+                      <Input placeholder="Select Tag" />
+                    </Form.Item>
+
+                    <Form.Item
+                      {...restField}
+                      name={[name, "last"]}
+                      style={{ width: "545px" }}
+                      label="Discription"
+                    >
+                      <Input placeholder="Enter Discription" />
+                    </Form.Item>
+                    <Button
+                      type="primary"
+                      icon={<DeleteOutlined />}
+                      danger
+                      onClick={() => remove(name)}
+                      size={"middle"}
+                    />
+                  </Space>
+                ))}
+                <Form.Item>
+                  <Button
+                    type="dashed"
+                    onClick={() => add()}
+                    icon={<PlusOutlined />}
+                  >
+                    Add field
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+        </Form>
       </Form>
     </>
   );

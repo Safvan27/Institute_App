@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import BasicLayout from "../../Components/Layout/BasicLayout";
 import "./University.css";
-import {
-  Card,
-  Col,
-  Typography,
-  Row,
-  Avatar,
-  Input,
-  Button,
-  Tag,
-  List,
-  Space,
-} from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
-const { Text } = Typography;
+import { Card, Col, Row, Avatar, Input, Button, Tag, List, Space } from "antd";
+import { MessageOutlined } from "@ant-design/icons";
 
 const { TextArea } = Input;
 const { Meta } = Card;
 
 const Universities = () => {
   const [viewComments, setViewComments] = useState(false);
+
   const universityDetail = [
     {
       name: "University of Greenwich",
@@ -112,7 +101,7 @@ const Universities = () => {
                 >
                   <List.Item.Meta
                     avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                    title={<a href="https://ant.design">{items.name}</a>}
+                    title={items.name}
                     description={items.comment}
                   />
                 </List.Item>

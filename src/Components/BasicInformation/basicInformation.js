@@ -48,7 +48,7 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Your name" />
         </Form.Item>
         <Form.Item
           label="Date of Birth"
@@ -60,7 +60,10 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <DatePicker style={{ width: "100%" }} />
+          <DatePicker
+            style={{ width: "100%" }}
+            placeholder="Select your Date of Birth"
+          />
         </Form.Item>
         <Form.Item
           label="Sex"
@@ -71,7 +74,7 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <Select>
+          <Select placeholder="Select your Gender">
             <Option value="male">Male</Option>
             <Option value="female">Female</Option>
             <Option value="other">Other</Option>
@@ -88,7 +91,7 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Your Email" />
         </Form.Item>
         <Form.Item
           label="Address"
@@ -100,7 +103,7 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Your Address" />
         </Form.Item>
         <Form.Item
           label="School / Collage"
@@ -112,7 +115,7 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Your School/Collage" />
         </Form.Item>
         <Form.Item
           label="Mobile Number"
@@ -124,7 +127,11 @@ const BasicInformation = () => {
             },
           ]}
         >
-          <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
+          <Input
+            addonBefore={prefixSelector}
+            style={{ width: "100%" }}
+            placeholder="Your Mobile Number"
+          />
         </Form.Item>
       </Form>
     </>
