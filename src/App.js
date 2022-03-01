@@ -1,10 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.less";
-import Home from "./Pages/Home";
-import Signin from "./Pages/Signin";
-import ForgetPassword from "./Pages/ForgetPassword";
-import Signup from "./Pages/Signup";
+import "antd/dist/antd.css";
+import Home from "./Pages/Home/Home";
+import Profile from "./Pages/Profile/Profile";
+import Notifications from "./Pages/Notifications/Notifications";
+import University from "./Pages/University/University";
 
 function App() {
   return (
@@ -13,14 +14,14 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/signup">
-          <Signup />
+        <Route path="/university">
+          <University />
         </Route>
-        <Route path="/signin">
-          <Signin />
+        <Route path="/profile">
+          <Profile />
         </Route>
-        <Route path="/resetpwd">
-          <ForgetPassword />
+        <Route path="/notifications">
+          <Notifications />
         </Route>
       </Router>
     </div>

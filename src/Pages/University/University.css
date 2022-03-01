@@ -1,0 +1,15 @@
+.universityCard {
+  border-radius: 15px;
+  margin: 30px;
+  width: 1100px;
+}
+.imgcontentStyle {
+  margin-top: 50px;
+}
+.tagcontentStyle {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.commentSection {
+  margin-top: 10px;
+}
