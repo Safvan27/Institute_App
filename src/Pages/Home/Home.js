@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "./Home.css";
-
 import { Steps, Card, Tag, Button, message } from "antd";
 import {
   SaveOutlined,
@@ -12,6 +10,7 @@ import {
   DollarTwoTone,
 } from "@ant-design/icons";
 
+import "./Home.css";
 import BasicLayout from "../../Components/Layout/BasicLayout";
 import AdditionalInform from "../../Components/AdditionalInformation/additionalInform";
 import BasicInformation from "../../Components/BasicInformation/basicInformation";

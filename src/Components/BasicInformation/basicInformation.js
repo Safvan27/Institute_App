@@ -1,8 +1,5 @@
 import React from "react";
-import "./basicInformation.css";
-import { db } from "../../Database/fire.js";
 import moment from "moment";
-
 import {
   Form,
   Input,
@@ -12,6 +9,10 @@ import {
   Button,
   message,
 } from "antd";
+
+import { db } from "../../Database/fire.js";
+import "./basicInformation.css";
+
 const { Option } = Select;
 const { Title } = Typography;
 

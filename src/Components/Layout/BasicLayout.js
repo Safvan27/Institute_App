@@ -1,9 +1,11 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import { useHistory } from "react-router-dom";
+
 import "./Layout.css";
 
 const { Header } = Layout;
+
 const BasicLayout = () => {
   const history = useHistory();
   const selectMenu = history.location.pathname.split("/")[1];

@@ -1,7 +1,8 @@
 import React from "react";
+import { List, Avatar, Card } from "antd";
+
 import BasicLayout from "../../Components/Layout/BasicLayout";
 import "./Notifications.css";
-import { List, Avatar, Card } from "antd";
 
 const Notifications = () => {
   const data = [

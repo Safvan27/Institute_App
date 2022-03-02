@@ -1,6 +1,4 @@
 import React from "react";
-import "./additionalInform.css";
-
 import {
   Form,
   Input,
@@ -14,6 +12,9 @@ import {
   Space,
 } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+
+import "./additionalInform.css";
+
 const { Title } = Typography;
 const { Option } = Select;
 
