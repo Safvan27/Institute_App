@@ -22,6 +22,7 @@ const { Step } = Steps;
 
 const Home = () => {
   const [current, setCurrent] = useState(0);
+  const [profileComplete, setProfileComplete] = useState(false);
 
   const next = () => {
     setCurrent(current + 1);
@@ -30,10 +31,11 @@ const Home = () => {
   const prev = () => {
     setCurrent(current - 1);
   };
+  const onProfileFinish = () => {};
   const steps = [
     {
       title: "Basic Information",
-      content: <BasicInformation />,
+      content: <BasicInformation setProfileComplete={setProfileComplete} />,
       icon: <FileTextTwoTone />,
     },
     {
@@ -102,7 +104,16 @@ const Home = () => {
           {current < steps.length - 1 && (
             <Button
               type="primary"
-              onClick={() => next()}
+              htmlType="submit"
+              onClick={
+                current === 0
+                  ? () => {
+                      next();
+                      onProfileFinish();
+                    }
+                  : () => next()
+              }
+              disabled={!profileComplete}
               icon={<ArrowRightOutlined />}
             >
               Next

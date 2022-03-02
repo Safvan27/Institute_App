@@ -12,6 +12,7 @@ const Universities = () => {
 
   const universityDetail = [
     {
+      key: 1,
       name: "University of Greenwich",
       postedTime: "3 Days ago",
       content: `Dear Students..., 

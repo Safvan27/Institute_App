@@ -1,13 +1,40 @@
 import React from "react";
 import "./basicInformation.css";
+import { db } from "../../Database/fire.js";
+import moment from "moment";
 
-import { Form, Input, DatePicker, Select, Typography } from "antd";
+import {
+  Form,
+  Input,
+  DatePicker,
+  Select,
+  Typography,
+  Button,
+  message,
+} from "antd";
 const { Option } = Select;
 const { Title } = Typography;
 
-const BasicInformation = () => {
+const BasicInformation = ({ setProfileComplete }) => {
+  const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log("Success:", values);
+    setProfileComplete(true);
+    db.collection("profiles")
+      .add({
+        id: values.id,
+        name: String(values.name),
+        gender: values.gender,
+        avatar: "https://joeschmoe.io/api/v1/random",
+        dob: moment(values.dob).format("MMMM DD YYYY"),
+        address: values.address,
+        email: values.email,
+        status: "Verified",
+        latest: true,
+        logo: "https://jdenticon.com/#icon-Charlotte",
+        education: values.school,
+        mobile: values.mobile,
+      })
+      .then(message.success("Profile Added!"));
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -21,6 +48,7 @@ const BasicInformation = () => {
       </Select>
     </Form.Item>
   );
+
   return (
     <>
       <Title level={3} className="formTitle">
@@ -28,6 +56,7 @@ const BasicInformation = () => {
       </Title>
       <Form
         name="basic"
+        form={form}
         labelCol={{
           span: 8,
         }}
@@ -51,6 +80,18 @@ const BasicInformation = () => {
           <Input placeholder="Your name" />
         </Form.Item>
         <Form.Item
+          label="ID"
+          name="id"
+          rules={[
+            {
+              required: true,
+              message: "Please write your ID!",
+            },
+          ]}
+        >
+          <Input placeholder="Your ID" />
+        </Form.Item>
+        <Form.Item
           label="Date of Birth"
           name="dob"
           rules={[
@@ -66,8 +107,8 @@ const BasicInformation = () => {
           />
         </Form.Item>
         <Form.Item
-          label="Sex"
-          name="sex"
+          label="Gender"
+          name="gender"
           rules={[
             {
               required: true,
@@ -87,7 +128,7 @@ const BasicInformation = () => {
             {
               type: "email",
               required: true,
-              message: "Please input your username!",
+              message: "Please input your Email!",
             },
           ]}
         >
@@ -99,7 +140,7 @@ const BasicInformation = () => {
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: "Please input your Address!",
             },
           ]}
         >
@@ -111,7 +152,7 @@ const BasicInformation = () => {
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: "Please input your School!",
             },
           ]}
         >
@@ -123,7 +164,7 @@ const BasicInformation = () => {
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: "Please input your Mobile Number!",
             },
           ]}
         >
@@ -133,6 +174,9 @@ const BasicInformation = () => {
             placeholder="Your Mobile Number"
           />
         </Form.Item>
+        <Button type="primary" htmlType="submit" style={{ marginLeft: "92%" }}>
+          Add Profile
+        </Button>
       </Form>
     </>
   );

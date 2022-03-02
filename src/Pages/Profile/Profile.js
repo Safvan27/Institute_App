@@ -1,7 +1,9 @@
 import { Card, Col, Typography, Row, Avatar, Button } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import BasicLayout from "../../Components/Layout/BasicLayout";
+import { db } from "../../Database/fire";
+
 import {
   EditOutlined,
   PhoneOutlined,
@@ -14,40 +16,57 @@ const { Text } = Typography;
 const { Meta } = Card;
 
 const Profile = () => {
-  const userProfiles = [
-    {
-      name: "Charlotee Roselie",
-      avatar: "https://joeschmoe.io/api/v1/random",
-      id: "EDU-IND-6644081",
-      mobile: "+91-7894563210",
-      email: "myemail@charlotee.com",
-      education: "Msc Business with International Management",
-      status: "pending",
-      latest: false,
-      logo: "https://jdenticon.com/#icon-Charlotte",
-    },
-    {
-      name: "Rosalie Due",
-      avatar: "https://joeschmoe.io/api/v1/random",
-      id: "EDU-IND-6644081",
-      mobile: "+91-7894563210",
-      email: "hariskarat@charlotee.com",
-      education: "Master in Business",
-      status: "Applied",
-      latest: true,
-    },
-    {
-      name: "Thomas Paul",
-      avatar: "https://joeschmoe.io/api/v1/random",
-      id: "EDU-IND-6644081",
-      mobile: "+91-7894563210",
-      email: "Paul@charlotee.com",
-      education: "MBA in Administartion",
-      status: "Verified",
-      latest: true,
-      logo: "https://jdenticon.com/#icon-Charlotte",
-    },
-  ];
+  const [profilesfromDB, setProfilesfromDB] = useState([]);
+  const userProfiles = profilesfromDB;
+  // const userProfiles = [
+  //   {
+  //     name: "Charlotee Roselie",
+  //     avatar: "https://joeschmoe.io/api/v1/random",
+  //     id: "EDU-IND-6644081",
+  //     mobile: "+91-7894563210",
+  //     email: "myemail@charlotee.com",
+  //     education: "Msc Business with International Management",
+  //     status: "pending",
+  //     latest: false,
+  //     logo: "https://jdenticon.com/#icon-Charlotte",
+  //   },
+  //   {
+  //     name: "Rosalie Due",
+  //     avatar: "https://joeschmoe.io/api/v1/random",
+  //     id: "EDU-IND-6644081",
+  //     mobile: "+91-7894563210",
+  //     email: "hariskarat@charlotee.com",
+  //     education: "Master in Business",
+  //     status: "Applied",
+  //     latest: true,
+  //   },
+  //   {
+  //     name: "Thomas Paul",
+  //     avatar: "https://joeschmoe.io/api/v1/random",
+  //     id: "EDU-IND-6644081",
+  //     mobile: "+91-7894563210",
+  //     email: "Paul@charlotee.com",
+  //     education: "MBA in Administartion",
+  //     status: "Verified",
+  //     latest: true,
+  //     logo: "https://jdenticon.com/#icon-Charlotte",
+  //   },
+  // ];
+
+  let profiles = [];
+  const getProfiles = async () => {
+    const snapshot = await db.collection("profiles").get();
+    return snapshot.docs
+      .map((doc) => {
+        doc.data();
+        profiles.push(doc.data());
+      })
+      .then(setProfilesfromDB(profiles));
+  };
+  useEffect(() => {
+    getProfiles();
+    console.log("profilesfromDB", profilesfromDB);
+  }, []);
   return (
     <>
       <BasicLayout />
@@ -147,6 +166,7 @@ const Profile = () => {
           </Col>
         ))}
       </Row>
+      )
     </>
   );
 };
