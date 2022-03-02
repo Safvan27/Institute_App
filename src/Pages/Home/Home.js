@@ -60,7 +60,7 @@ const Home = () => {
         style={{ borderRadius: "15px" }}
         title={
           <div style={{ fontSize: "1.5em" }}>
-            Cource Creation
+            Registration
             <Tag style={{ marginLeft: "10px" }}>Step {current + 1} of 4</Tag>
           </div>
         }
