@@ -20,16 +20,20 @@ const Profile = () => {
   let profiles = [];
   const getProfiles = async () => {
     const snapshot = await db.collection("profiles").get();
-    return snapshot.docs
-      .map((doc) => {
-        doc.data();
-        profiles.push(doc.data());
-      })
-      .then(setProfilesfromDB(profiles));
+    return (
+      snapshot.docs
+        // eslint-disable-next-line array-callback-return
+        .map((doc) => {
+          doc.data();
+          profiles.push(doc.data());
+        })
+        .then(setProfilesfromDB(profiles))
+    );
   };
   useEffect(() => {
     getProfiles();
     console.log("profilesfromDB", profilesfromDB);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
